@@ -9,7 +9,7 @@
   "scripts": {
     "prepublishOnly": "npm run lint && npm run build",
     "build": "tsc",
-    "lint": "eslint ."
+    "lint": "eslint . --ignore-pattern 'dist'"
   },
   "files": [
     "dist"
