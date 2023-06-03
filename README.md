@@ -1,4 +1,5 @@
 <!-- TODO: update this. Note how to configure vscode, and how file must be eslint.config.js -->
+<!-- TODO: Get eslintignore file working again -->
 
 # ESLint config
 
