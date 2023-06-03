@@ -6,7 +6,7 @@
   "author": "Dan Levett",
   "license": "ISC",
   "scripts": {
-    "prepublish": "npm run lint",
+    "prepublishOnly": "npm run lint",
     "lint": "npm run lint:index && npm run lint:react",
     "lint:index": "eslint --config index.js .",
     "lint:react": "eslint --config react.js ."
