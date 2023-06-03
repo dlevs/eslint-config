@@ -16,13 +16,13 @@ const configPrettier = require("eslint-config-prettier");
 module.exports = function getConfig(options) {
   const config = [typeScriptRules, typeJavaScriptRules];
 
-  // if (options?.react) {
-  //   config.push(reactRules);
-  // }
+  if (options?.react) {
+    config.push(reactRules);
+  }
 
-  // if (options?.remix) {
-  //   config.push(remixRules);
-  // }
+  if (options?.remix) {
+    config.push(remixRules);
+  }
 
   return config;
 };
