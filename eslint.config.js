@@ -19,7 +19,7 @@ const configPrettier = require("eslint-config-prettier");
  * @param {{ react?: boolean, remix?: boolean, ignores?: string[] }} [options]
  */
 function configure(options) {
-  const configs = [typeScriptRules, typeJavaScriptRules];
+  const configs = [javascriptRules, typescriptRules];
 
   if (options?.react) {
     configs.push(reactRules);
@@ -39,47 +39,60 @@ function configure(options) {
 }
 
 /**
- * Rules TypeScript files only.
- * @type {import("eslint").Linter.FlatConfig}
+ * Language and plugin options used by most rules.
+ *
+ * @type {Partial<import("eslint").Linter.FlatConfig>}
  */
-const typeScriptRules = {
-  files: ["**/*.ts", "**/*.tsx"],
-  languageOptions: { parser: parserTypescript },
-  plugins: { "@typescript-eslint": pluginTypescript },
-  rules: pluginTypescript.configs.recommended.rules,
+const sharedConfig = {
+  languageOptions: {
+    parser: parserTypescript,
+    parserOptions: {
+      // These options are necessary for some rules to work,
+      // like "import/no-default-export".
+      sourceType: "module",
+      ecmaVersion: "latest",
+    },
+  },
+  plugins: {
+    "@typescript-eslint": pluginTypescript,
+    "simple-import-sort": pluginSimpleImportSort,
+    import: pluginImport,
+    prettier: pluginPrettier,
+  },
 };
 
 /**
  * Rules for all JavaScript / TypeScript files.
  * @type {import("eslint").Linter.FlatConfig}
  */
-const typeJavaScriptRules = {
+const javascriptRules = {
+  ...sharedConfig,
   files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.json"],
-  languageOptions: { parser: parserTypescript },
-  plugins: {
-    "simple-import-sort": pluginSimpleImportSort,
-    import: pluginImport,
-    prettier: pluginPrettier,
-  },
   rules: {
     // Prettier
     ...configPrettier.rules,
     ...pluginPrettier.configs.recommended.rules,
 
     // Sort imports / exports
-    "simple-import-sort/imports": 2,
-    "simple-import-sort/exports": 2,
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
 
-    // General import / export rules
-    "import/first": 2,
-    "import/no-duplicates": 2,
-    "import/newline-after-import": 2,
-    // TODO: Check why this is no longer working. Maybe the latest version of eslint broke it?
-    "import/no-default-export": 2,
-    "import/no-self-import": 2,
-    "import/no-cycle": 2,
-    "import/no-useless-path-segments": 2,
+    ...pluginImport.configs.recommended.rules,
+    // // General import / export rules
+    // // TODO: Check why this is no longer working. Maybe the latest version of eslint broke it?
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error",
   },
+};
+
+/**
+ * Rules TypeScript files only.
+ * @type {import("eslint").Linter.FlatConfig}
+ */
+const typescriptRules = {
+  ...sharedConfig,
+  files: ["**/*.ts", "**/*.tsx"],
+  rules: pluginTypescript.configs.recommended.rules,
 };
 
 /**
@@ -87,17 +100,17 @@ const typeJavaScriptRules = {
  * @type {import("eslint").Linter.FlatConfig}
  */
 const reactRules = {
+  ...sharedConfig,
   files: ["**/*.jsx", "**/*.tsx"],
-  languageOptions: { parser: parserTypescript },
   plugins: {
     react: pluginReact,
     reactHooks: pluginReactHooks,
   },
   rules: {
     ...pluginReact.configs.recommended.rules,
-    "react/react-in-jsx-scope": 0,
+    "react/react-in-jsx-scope": "off",
     // Prop types not needed with TypeScript.
-    "react/prop-types": 0,
+    "react/prop-types": "off",
   },
   settings: { react: { version: "detect" } },
 };
@@ -107,12 +120,11 @@ const reactRules = {
  * @type {import("eslint").Linter.FlatConfig}
  */
 const remixRules = {
+  ...sharedConfig,
   files: ["**/app/routes/**/*.tsx", "**/app/routes/**/*.jsx"],
-  languageOptions: { parser: parserTypescript },
-  plugins: { import: pluginImport },
   rules: {
     // Remix requires the use of default exports for routes.
-    "import/no-default-export": 0,
+    "import/no-default-export": "off",
   },
 };
 
