@@ -2,14 +2,18 @@
   "name": "@dlevs/eslint-config",
   "version": "1.0.6",
   "description": "ESLint config for my projects",
-  "main": "getConfig.js",
+  "main": "dist/getConfig.js",
+  "types": "dist/getConfig.d.js",
   "author": "Dan Levett",
   "license": "ISC",
   "scripts": {
-    "prepublishOnly": "npm run lint && npm run typecheck",
-    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run lint && npm run build",
+    "build": "tsc",
     "lint": "eslint ."
   },
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
