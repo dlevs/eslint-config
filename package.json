@@ -1,6 +1,6 @@
 {
   "name": "@dlevs/eslint-config",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "ESLint config for my projects",
   "main": "index.js",
   "author": "Dan Levett",
