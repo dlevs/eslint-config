@@ -1,4 +1,4 @@
-<!-- TODO: update this. Note how to configure vscode -->
+<!-- TODO: update this. Note how to configure vscode, and how file must be eslint.config.js -->
 
 # ESLint config
 
