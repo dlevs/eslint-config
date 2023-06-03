@@ -1,17 +1,23 @@
+/** @type {any} */
 const parserTypescript = require("@typescript-eslint/parser");
-
+/** @type {any} */
 const pluginTypescript = require("@typescript-eslint/eslint-plugin");
+// @ts-expect-error Package has no types
 const pluginSimpleImportSort = require("eslint-plugin-simple-import-sort");
+// @ts-expect-error Package has no types
 const pluginImport = require("eslint-plugin-import");
+// @ts-expect-error Package has no types
 const pluginReact = require("eslint-plugin-react");
+// @ts-expect-error Package has no types
 const pluginReactHooks = require("eslint-plugin-react-hooks");
+// @ts-expect-error Package has no types
 const pluginPrettier = require("eslint-plugin-prettier");
-
+// @ts-expect-error Package has no types
 const configPrettier = require("eslint-config-prettier");
 
 /**
- * @param {{ react?: boolean, remix?: booleam }} [options]
- * @returns {import("eslint").Linter.FlatConfig}
+ * @param {{ react?: boolean, remix?: boolean }} [options]
+ * @returns {import("eslint").Linter.FlatConfig[]}
  */
 module.exports = function getConfig(options) {
   const config = [typeScriptRules, typeJavaScriptRules];
