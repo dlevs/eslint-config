@@ -7,15 +7,11 @@
   "license": "ISC",
   "scripts": {
     "prepublishOnly": "npm run lint",
-    "lint": "npm run lint:index && npm run lint:react",
-    "lint:index": "eslint --config index.js .",
-    "lint:react": "eslint --config react.js ."
+    "lint": "eslint ."
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.59.8",
     "@typescript-eslint/parser": "^5.59.8",
-    "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
@@ -23,7 +19,9 @@
     "eslint-plugin-simple-import-sort": "^10.0.0"
   },
   "devDependencies": {
+    "@types/eslint": "^8.40.0",
     "eslint": "^8.42.0",
+    "eslint-config-prettier": "^8.8.0",
     "prettier": "^2.8.8"
   },
   "peerDependencies": {

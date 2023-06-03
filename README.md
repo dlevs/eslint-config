@@ -1,3 +1,5 @@
+<!-- TODO: update this. Note how to configure vscode -->
+
 # ESLint config
 
 An ESLint config for TypeScript projects.
