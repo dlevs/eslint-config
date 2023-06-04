@@ -91,9 +91,9 @@ const baseRules = [
       },
     },
   },
-  // Allow default exports in config files.
+  // Allow default exports in config files and type declarations.
   {
-    files: ["**/*.config.ts", "**/*.config.js"],
+    files: ["**/*.config.ts", "**/*.config.js", "**/*.d.ts"],
     rules: { "import/no-default-export": "off" },
   },
 ];
@@ -129,7 +129,12 @@ const reactRules = [
 const remixRules = [
   // Remix requires the use of default exports for routes.
   {
-    files: ["**/app/routes/**/*.tsx", "**/app/routes/**/*.jsx"],
+    files: [
+      "**/app/routes/**/*.tsx",
+      "**/app/routes/**/*.jsx",
+      "**/app/entry.server.tsx",
+      "**/app/root.tsx",
+    ],
     rules: { "import/no-default-export": "off" },
   },
 ];
