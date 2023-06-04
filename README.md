@@ -2,13 +2,13 @@
 
 An ESLint config for TypeScript projects.
 
-## Install it
+## Installation
 
 ```sh
 npm i -D eslint @dlevs/eslint-config
 ```
 
-## Use it
+## Usage
 
 Make an `eslint.config.js` file:
 
@@ -28,12 +28,10 @@ Note, `.eslintrc` files won't work - you must name the file `eslint.config.js`, 
 
 ## Update VSCode settings
 
-If using VSCode, set the following in your `settings.json` file:
+If using VSCode, lint errors will not show until you add this to your `settings.json` file:
 
 ```json
 {
   "eslint.experimental.useFlatConfig": true
 }
 ```
-
-Ideally, do this for the workspace so it will work out of the box for anyone who clones the repository. Do this by updating (or creating) the `.vscode/settings.json` file in your project.
