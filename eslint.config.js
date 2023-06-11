@@ -1,30 +1,24 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
-/** @type {any} */
-const parserTypescript = require("@typescript-eslint/parser");
-/** @type {any} */
-const pluginTypescript = require("@typescript-eslint/eslint-plugin");
+import pluginTypescript from "@typescript-eslint/eslint-plugin";
+import parserTypescript from "@typescript-eslint/parser";
 // @ts-expect-error Package has no types
-const pluginSimpleImportSort = require("eslint-plugin-simple-import-sort");
+import configPrettier from "eslint-config-prettier";
 // @ts-expect-error Package has no types
-const pluginImport = require("eslint-plugin-import");
+import pluginImport from "eslint-plugin-import";
 // @ts-expect-error Package has no types
-const pluginReact = require("eslint-plugin-react");
+import pluginPrettier from "eslint-plugin-prettier";
 // @ts-expect-error Package has no types
-const pluginReactHooks = require("eslint-plugin-react-hooks");
+import pluginReact from "eslint-plugin-react";
 // @ts-expect-error Package has no types
-const pluginPrettier = require("eslint-plugin-prettier");
+import pluginReactHooks from "eslint-plugin-react-hooks";
 // @ts-expect-error Package has no types
-const configPrettier = require("eslint-config-prettier");
-
-// TODO: Explore other best practices / common plugins. E.g. jsx-a11y, unicorn, etc.
+import pluginSimpleImportSort from "eslint-plugin-simple-import-sort";
 
 /**
  * Get an ESLint config for a project, in "FlatConfig" format.
  *
  * @param {{ react?: boolean, remix?: boolean }} [options]
  */
-function configure(options) {
+export function configure(options) {
   const configs = [...baseRules];
 
   if (options?.react) {
@@ -45,6 +39,7 @@ function configure(options) {
 const baseRules = [
   {
     languageOptions: {
+      // @ts-expect-error `parserTypescript` type not perfect match
       parser: parserTypescript,
       parserOptions: {
         // These options are necessary for some rules to work,
@@ -55,6 +50,7 @@ const baseRules = [
     },
     files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.json"],
     plugins: {
+      // @ts-expect-error `pluginTypescript` type not perfect match
       "@typescript-eslint": pluginTypescript,
       "simple-import-sort": pluginSimpleImportSort,
       import: pluginImport,
@@ -144,21 +140,12 @@ const remixRules = [
  *
  * Exported as an array from this file so it functions as a normal eslint config
  * file, so we get instant feedback in VSCode upon saving changes in this project.
- *
- * It also has a "configure" method that is intended to be used by package
- * consumers.
- *
- * Ideally, we'd use ESM to make a default export and a named export, but ESLint
- * doesn't support that yet.
  */
-const defaultConfig = Object.assign(
-  [
-    {
-      ignores: ["**/dist/**"],
-    },
-    ...configure({ react: true, remix: true }),
-  ],
-  { configure }
-);
+const defaultConfig = [
+  {
+    ignores: ["**/dist/**"],
+  },
+  ...configure({ react: true, remix: true }),
+];
 
-module.exports = defaultConfig;
+export default defaultConfig;

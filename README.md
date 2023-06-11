@@ -13,9 +13,9 @@ npm i -D eslint @dlevs/eslint-config
 Make an `eslint.config.js` file:
 
 ```js
-const { configure } = require("@dlevs/eslint-config");
+import { configure } from "@dlevs/eslint-config";
 
-module.exports = [
+export default [
   {
     // Use this instead of a .eslintignore file.
     ignores: ["build/**", "public/**"],

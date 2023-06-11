@@ -2,13 +2,18 @@
   "name": "@dlevs/eslint-config",
   "version": "1.0.13",
   "description": "ESLint config for my projects",
-  "main": "dist/eslint.config.js",
-  "types": "dist/eslint.config.d.js",
+  "source": "./eslint.config.js",
+  "type": "module",
+  "types": "./dist/eslint-config.d.ts",
+  "exports": {
+    "require": "./dist/eslint-config.cjs",
+    "default": "./dist/eslint-config.modern.mjs"
+  },
   "author": "Dan Levett",
   "license": "ISC",
   "scripts": {
     "prepublishOnly": "npm run lint && npm run build",
-    "build": "tsc",
+    "build": "microbundle",
     "lint": "eslint ."
   },
   "files": [
@@ -28,6 +33,7 @@
   "devDependencies": {
     "@types/eslint": "^8.40.0",
     "eslint": "^8.42.0",
+    "microbundle": "^0.15.1",
     "prettier": "^2.8.8",
     "typescript": "^5.1.3"
   },
