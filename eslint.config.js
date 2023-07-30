@@ -5,8 +5,6 @@ import configPrettier from "eslint-config-prettier";
 // @ts-expect-error Package has no types
 import pluginImport from "eslint-plugin-import";
 // @ts-expect-error Package has no types
-import pluginPrettier from "eslint-plugin-prettier";
-// @ts-expect-error Package has no types
 import pluginReact from "eslint-plugin-react";
 // @ts-expect-error Package has no types
 import pluginReactHooks from "eslint-plugin-react-hooks";
@@ -54,7 +52,6 @@ const baseRules = [
       "@typescript-eslint": pluginTypescript,
       "simple-import-sort": pluginSimpleImportSort,
       import: pluginImport,
-      prettier: pluginPrettier,
     },
     rules: {
       // TypeScript
@@ -62,7 +59,6 @@ const baseRules = [
 
       // Prettier
       ...configPrettier.rules,
-      ...pluginPrettier.configs.recommended.rules,
 
       // Sort imports / exports
       "simple-import-sort/imports": "error",
