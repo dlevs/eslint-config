@@ -1,6 +1,6 @@
 {
   "name": "@dlevs/eslint-config",
-  "version": "1.0.14",
+  "version": "2.0.0",
   "description": "ESLint config for my projects",
   "source": "./eslint.config.js",
   "type": "module",
