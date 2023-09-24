@@ -15,6 +15,7 @@ Make an `eslint.config.js` file:
 ```js
 import { configure } from "@dlevs/eslint-config";
 
+/** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
   {
     // Use this instead of a .eslintignore file.
