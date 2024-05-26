@@ -83,9 +83,18 @@ const baseRules = [
       },
     },
   },
-  // Allow default exports in config files and type declarations.
+  // Allow default exports in some files.
   {
-    files: ["**/*.config.ts", "**/*.config.js", "**/*.d.ts"],
+    files: [
+      // Config
+      "**/*.config.ts",
+      "**/*.config.js",
+      // Type definitions
+      "**/*.d.ts",
+      // Storybook stories
+      "**/*.stories.tsx",
+      "**/*.stories.jsx",
+    ],
     rules: { "import/no-default-export": "off" },
   },
 ];
