@@ -92,6 +92,10 @@ const baseRules = [
       // Type definitions
       "**/*.d.ts",
       // Storybook stories
+      "**/.storybook/**/*.ts",
+      "**/.storybook/**/*.tsx",
+      "**/.storybook/**/*.js",
+      "**/.storybook/**/*.jsx",
       "**/*.stories.ts",
       "**/*.stories.tsx",
       "**/*.stories.js",
