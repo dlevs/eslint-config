@@ -92,8 +92,10 @@ const baseRules = [
       // Type definitions
       "**/*.d.ts",
       // Storybook stories
-      "**/*.stories.tsx?",
-      "**/*.stories.jsx?",
+      "**/*.stories.ts",
+      "**/*.stories.tsx",
+      "**/*.stories.js",
+      "**/*.stories.jsx",
     ],
     rules: { "import/no-default-export": "off" },
   },
